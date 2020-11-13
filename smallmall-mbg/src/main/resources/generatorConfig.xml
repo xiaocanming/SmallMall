@@ -32,7 +32,7 @@
         </javaModelGenerator>
 
         <!-- generate xml -->
-        <sqlMapGenerator targetPackage="com.macro.mall.mapper" targetProject="src\main\resources">
+        <sqlMapGenerator targetPackage="com.xcm.smallmall.mapperxml" targetProject="src\main\resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
