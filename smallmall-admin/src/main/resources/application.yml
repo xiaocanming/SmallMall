@@ -10,4 +10,5 @@ spring:
 mybatis-plus:
   mapper-locations:
     - classpath*:com/**/mapperxml/*.xml
+    - classpath:dao/*.xml
 

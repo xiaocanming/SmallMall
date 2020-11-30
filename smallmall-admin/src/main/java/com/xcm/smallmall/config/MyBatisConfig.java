@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @ServletComponentScan
-@MapperScan(basePackages = {"com.xcm.smallmall.mapper"})
+@MapperScan(basePackages = {"com.xcm.smallmall.mapper","com.xcm.smallmall.dao"})
 public class MyBatisConfig {
 
 }

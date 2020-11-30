@@ -6,9 +6,21 @@
 <generatorConfiguration>
     <properties resource="generator.properties"/>
     <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
-        <commentGenerator>
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <commentGenerator type="com.xcm.smallmall.CommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection driverClass="${jdbc.driverClass}"
@@ -26,20 +38,20 @@
 
         <!-- generate Model -->
         <javaModelGenerator targetPackage="com.xcm.smallmall.model"
-                            targetProject="src\main\java">
+                            targetProject="smallmall-mbg\src\main\java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- generate xml -->
-        <sqlMapGenerator targetPackage="com.xcm.smallmall.mapperxml" targetProject="src\main\resources">
+        <sqlMapGenerator targetPackage="com.xcm.smallmall.mapperxml" targetProject="smallmall-mbg\src\main\resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- generate Mapper -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.xcm.smallmall.mapper"
-                             targetProject="src\main\java">
+                             targetProject="smallmall-mbg\src\main\java">
             <property name="enableSubPackages" value="false"/>
             <property name="exampleMethodVisibility" value="public"/>
         </javaClientGenerator>
