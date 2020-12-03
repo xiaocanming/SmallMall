@@ -20,7 +20,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.time.Duration;
 
 /**
- * @描述
+ * @描述 Redis基础配置
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

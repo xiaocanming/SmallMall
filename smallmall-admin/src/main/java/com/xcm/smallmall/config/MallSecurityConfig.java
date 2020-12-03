@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @描述
+ * @描述  smallmall-security模块相关配置
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

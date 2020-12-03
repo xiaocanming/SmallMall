@@ -10,9 +10,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 数据库链接池druid监控平台的配置
+ * @描述 数据库链接池druid监控平台的配置
  * 访问路径 http://localhost:8082/druid/index.html
- *
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 @Configuration
 public class DruidConfiguration {

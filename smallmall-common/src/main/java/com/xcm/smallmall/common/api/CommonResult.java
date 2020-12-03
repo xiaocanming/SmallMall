@@ -1,8 +1,9 @@
 package com.xcm.smallmall.common.api;
 
 /**
- * 通用返回对象
- * Created by macro on 2019/4/19.
+ * @描述 通用返回对象
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 public class CommonResult<T> {
     /**

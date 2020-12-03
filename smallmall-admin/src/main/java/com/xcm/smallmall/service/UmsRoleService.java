@@ -5,7 +5,7 @@ import com.xcm.smallmall.model.UmsMenu;
 import java.util.List;
 
 /**
- * @描述
+ * @描述 后台管理员角色管理Service
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

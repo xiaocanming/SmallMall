@@ -7,8 +7,9 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * 用户登录参数
- * Created by macro on 2018/4/26.
+ * @描述 用户登录参数
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @描述
+ * @描述 SpringSecurity需要的用户详情
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

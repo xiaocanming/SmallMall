@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @描述
+ * @描述 redis操作类
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

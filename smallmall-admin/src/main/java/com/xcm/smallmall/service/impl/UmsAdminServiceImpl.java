@@ -3,6 +3,7 @@ package com.xcm.smallmall.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import com.xcm.smallmall.bo.AdminUserDetails;
+import com.xcm.smallmall.common.exception.Asserts;
 import com.xcm.smallmall.common.util.RequestUtil;
 import com.xcm.smallmall.dao.UmsAdminRoleRelationDao;
 import com.xcm.smallmall.dto.UmsAdminParam;
@@ -10,6 +11,7 @@ import com.xcm.smallmall.dto.UpdateAdminPasswordParam;
 import com.xcm.smallmall.mapper.UmsAdminLoginLogMapper;
 import com.xcm.smallmall.mapper.UmsAdminMapper;
 import com.xcm.smallmall.model.*;
+import com.xcm.smallmall.security.util.JwtTokenUtil;
 import com.xcm.smallmall.service.UmsAdminCacheService;
 import com.xcm.smallmall.service.UmsAdminService;
 import org.slf4j.Logger;
@@ -44,12 +46,12 @@ public class UmsAdminServiceImpl  implements UmsAdminService  {
     private UmsAdminMapper adminMapper;
     @Autowired
     private UmsAdminLoginLogMapper loginLogMapper;
-
     @Autowired
     private UmsAdminRoleRelationDao adminRoleRelationDao;
-
-//    @Autowired
-//    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
@@ -80,9 +82,8 @@ public class UmsAdminServiceImpl  implements UmsAdminService  {
             return null;
         }
         //将密码进行加密操作
-//        String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
-        String s = "";
-        umsAdmin.setPassword(s);
+        String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
+        umsAdmin.setPassword(encodePassword);
         adminMapper.insert(umsAdmin);
         return umsAdmin;
     }
@@ -93,15 +94,15 @@ public class UmsAdminServiceImpl  implements UmsAdminService  {
         //密码需要客户端加密后传递
         try {
             UserDetails userDetails = loadUserByUsername(username);
-//            if(!passwordEncoder.matches(password,userDetails.getPassword())){
-//                throw new ApiException("密码不正确");
-//            }
+            if(!passwordEncoder.matches(password,userDetails.getPassword())){
+                Asserts.fail("密码不正确");
+            }
             if(!userDetails.isEnabled()){
-                throw new ApiException("帐号已被禁用");
+                Asserts.fail("帐号已被禁用");
             }
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-//            token = jwtTokenUtil.generateToken(userDetails);
+            token = jwtTokenUtil.generateToken(userDetails);
 //            updateLoginTimeByUsername(username);
             insertLoginLog(username);
         } catch (AuthenticationException e) {

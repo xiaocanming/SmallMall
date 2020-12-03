@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 自定义返回结果：未登录或登录过期
- * Created by macro on 2018/5/14.
+ * @描述 自定义返回结果：未登录或登录过期
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override

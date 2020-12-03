@@ -1,8 +1,9 @@
 package com.xcm.smallmall.common.api;
 
 /**
- * 枚举了一些常用API操作码
- * Created by macro on 2019/4/19.
+ * @描述 枚举了一些常用API操作码
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 public enum ResultCode implements IErrorCode {
     SUCCESS(200, "操作成功"),

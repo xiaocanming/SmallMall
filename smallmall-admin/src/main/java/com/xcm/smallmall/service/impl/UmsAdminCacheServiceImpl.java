@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @描述
+ * @描述 后台管理员缓存信息Service实现类
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

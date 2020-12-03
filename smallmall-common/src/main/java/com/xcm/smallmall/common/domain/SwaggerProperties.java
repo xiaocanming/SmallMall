@@ -4,8 +4,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 /**
- * Swagger自定义配置
- * Created by macro on 2020/7/16.
+ * @描述 Swagger自定义配置
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

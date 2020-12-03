@@ -12,8 +12,9 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 /**
- * 动态权限数据源，用于获取动态权限规则
- * Created by macro on 2020/2/7.
+ * @描述 动态权限数据源，用于获取动态权限规则
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 

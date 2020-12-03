@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @描述
+ * @描述 请求工具类
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

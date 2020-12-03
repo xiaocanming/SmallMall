@@ -3,17 +3,14 @@ package com.xcm.smallmall.common.service.impl;
 import com.xcm.smallmall.common.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @描述
+ * @描述 redis操作实现类
  * @创建人 xcm
  * @创建时间 2020/12/2
  */

@@ -13,6 +13,11 @@ import springfox.documentation.spring.web.plugins.Docket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @描述 Swagger基础配置
+ * @创建人 xcm
+ * @创建时间 2020/12/2
+ */
 public abstract class BaseSwaggerConfig {
     @Bean
     public Docket createRestApi() {

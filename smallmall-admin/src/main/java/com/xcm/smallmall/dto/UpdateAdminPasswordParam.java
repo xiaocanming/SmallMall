@@ -7,8 +7,9 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * 修改用户名密码参数
- * Created by macro on 2019/10/9.
+ * @描述 修改用户名密码参数
+ * @创建人 xcm
+ * @创建时间 2020/12/2
  */
 @Getter
 @Setter
