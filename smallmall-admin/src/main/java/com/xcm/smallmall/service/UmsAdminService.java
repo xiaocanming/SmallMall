@@ -6,10 +6,8 @@ import com.xcm.smallmall.model.UmsAdmin;
 import com.xcm.smallmall.model.UmsResource;
 import com.xcm.smallmall.model.UmsRole;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

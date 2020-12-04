@@ -2,9 +2,11 @@ package com.xcm.smallmall.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xcm.smallmall.common.api.CommonPage;
 import com.xcm.smallmall.common.api.CommonResult;
 import com.xcm.smallmall.dto.UmsAdminLoginParam;
 import com.xcm.smallmall.dto.UmsAdminParam;
+import com.xcm.smallmall.dto.UpdateAdminPasswordParam;
 import com.xcm.smallmall.model.UmsAdmin;
 import com.xcm.smallmall.model.UmsRole;
 import com.xcm.smallmall.service.UmsAdminService;
@@ -112,5 +114,95 @@ public class UmsAdminController {
         return CommonResult.success(null);
     }
 
+    @ApiOperation("根据用户名或姓名分页获取用户列表")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<UmsAdmin>> list(@RequestParam(value = "keyword", required = false) String keyword,
+                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<UmsAdmin> adminList = adminService.list(keyword, pageSize, pageNum);
+        return CommonResult.success(CommonPage.restPage(adminList));
+    }
+
+    @ApiOperation("获取指定用户信息")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<UmsAdmin> getItem(@PathVariable Long id) {
+        UmsAdmin admin = adminService.getItem(id);
+        return CommonResult.success(admin);
+    }
+
+    @ApiOperation("修改指定用户信息")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult update(@PathVariable Long id, @RequestBody UmsAdmin admin) {
+        int count = adminService.update(id, admin);
+        if (count > 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("修改指定用户密码")
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updatePassword(@Validated @RequestBody UpdateAdminPasswordParam updatePasswordParam) {
+        int status = adminService.updatePassword(updatePasswordParam);
+        if (status > 0) {
+            return CommonResult.success(status);
+        } else if (status == -1) {
+            return CommonResult.failed("提交参数不合法");
+        } else if (status == -2) {
+            return CommonResult.failed("找不到该用户");
+        } else if (status == -3) {
+            return CommonResult.failed("旧密码错误");
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @ApiOperation("删除指定用户信息")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult delete(@PathVariable Long id) {
+        int count = adminService.delete(id);
+        if (count > 0) {
+            return CommonResult.success(null);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("修改帐号状态")
+    @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        umsAdmin.setStatus(status);
+        int count = adminService.update(id,umsAdmin);
+        if (count > 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("给用户分配角色")
+    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateRole(@RequestParam("adminId") Long adminId,
+                                   @RequestParam("roleIds") List<Long> roleIds) {
+        int count = adminService.updateRole(adminId, roleIds);
+        if (count >= 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("获取指定用户的角色")
+    @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
+        List<UmsRole> roleList = adminService.getRoleList(adminId);
+        return CommonResult.success(roleList);
+    }
 
 }
