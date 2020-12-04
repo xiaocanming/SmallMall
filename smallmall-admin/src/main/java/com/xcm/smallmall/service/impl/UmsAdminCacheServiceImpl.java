@@ -24,6 +24,8 @@ public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
     private Long REDIS_EXPIRE;
     @Value("${redis.key.resourceList}")
     private String REDIS_KEY_RESOURCE_LIST;
+    @Value("${redis.key.admin}")
+    private String REDIS_KEY_ADMIN;
 
     @Resource
     private RedisService redisService;
@@ -55,19 +57,20 @@ public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
 
     @Override
     public UmsAdmin getAdmin(String username) {
-        return null;
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_ADMIN + ":" + username;
+        return (UmsAdmin) redisService.get(key);
     }
 
     @Override
     public void setAdmin(UmsAdmin admin) {
-
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_ADMIN + ":" + admin.getUsername();
+        redisService.set(key, admin, REDIS_EXPIRE);
     }
 
     @Override
     public List<UmsResource> getResourceList(Long adminId) {
-        return  null;
-//        String key = REDIS_DATABASE + ":" + REDIS_KEY_RESOURCE_LIST + ":" + adminId;
-//        return (List<UmsResource>) redisService.get(key);
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_RESOURCE_LIST + ":" + adminId;
+        return (List<UmsResource>) redisService.get(key);
     }
 
     @Override

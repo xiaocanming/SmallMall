@@ -129,7 +129,7 @@ public class UmsAdminServiceImpl  implements UmsAdminService  {
 
     @Override
     public String refreshToken(String oldToken) {
-        return null;
+        return jwtTokenUtil.refreshHeadToken(oldToken);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class UmsAdminServiceImpl  implements UmsAdminService  {
 
     @Override
     public List<UmsRole> getRoleList(Long adminId) {
-        return null;
+        return adminRoleRelationDao.getRoleList(adminId);
     }
 
     @Override

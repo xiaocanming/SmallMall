@@ -1,7 +1,9 @@
 package com.xcm.smallmall.service.impl;
 
+import com.xcm.smallmall.dao.UmsRoleDao;
 import com.xcm.smallmall.model.UmsMenu;
 import com.xcm.smallmall.service.UmsRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,11 @@ import java.util.List;
  */
 @Service
 public class UmsRoleServiceImpl implements UmsRoleService {
+
+    @Autowired
+    private UmsRoleDao roleDao;
     @Override
     public List<UmsMenu> getMenuList(Long adminId) {
-        return null;
+        return roleDao.getMenuList(adminId);
     }
 }
