@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @创建时间 2020/12/4
  */
 @Service
-public class UmsMenuServiceImpl  implements UmsMenuService {
+public class UmsMenuServiceImpl implements UmsMenuService {
     @Autowired
     private UmsMenuMapper menuMapper;
 
@@ -69,18 +69,22 @@ public class UmsMenuServiceImpl  implements UmsMenuService {
 
     @Override
     public List<UmsMenu> list(Long parentId, Integer pageSize, Integer pageNum) {
-        PageHelper.startPage(pageNum,pageSize);
-        UmsMenuExample example=new UmsMenuExample();
+        PageHelper.startPage(pageNum, pageSize);
+        UmsMenuExample example = new UmsMenuExample();
         example.setOrderByClause("sort desc");
-        example.createCriteria().andParentIdEqualTo(parentId);
-        return  menuMapper.selectByExample(example);
+        if (parentId == 0L) {
+            example.createCriteria().andParentIdIsNull();
+        } else {
+            example.createCriteria().andParentIdEqualTo(parentId);
+        }
+        return menuMapper.selectByExample(example);
     }
 
     @Override
     public List<UmsMenuNode> treeList() {
         List<UmsMenu> menuList = menuMapper.selectByExample(new UmsMenuExample());
         List<UmsMenuNode> result = menuList.stream()
-                .filter(menu -> menu.getParentId().equals(0L))
+                .filter(menu -> menu.getParentId() == null)
                 .map(menu -> covertMenuNode(menu, menuList)).collect(Collectors.toList());
         return result;
     }
@@ -92,7 +96,7 @@ public class UmsMenuServiceImpl  implements UmsMenuService {
         UmsMenuNode node = new UmsMenuNode();
         BeanUtils.copyProperties(menu, node);
         List<UmsMenuNode> children = menuList.stream()
-                .filter(subMenu -> subMenu.getParentId().equals(menu.getId()))
+                .filter(subMenu -> subMenu.getParentId() != null && subMenu.getParentId().equals(menu.getId()))
                 .map(subMenu -> covertMenuNode(subMenu, menuList)).collect(Collectors.toList());
         node.setChildren(children);
         return node;
