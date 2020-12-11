@@ -1,7 +1,6 @@
 package com.xcm.smallmall.controller;
 
 import cn.hutool.core.collection.CollUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xcm.smallmall.common.api.CommonPage;
 import com.xcm.smallmall.common.api.CommonResult;
 import com.xcm.smallmall.dto.UmsAdminLoginParam;

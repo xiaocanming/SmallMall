@@ -23,3 +23,12 @@ spring:
     password: # Redis服务器连接密码（默认为空）
     timeout: 300ms # 连接超时时间（毫秒）
 
+logging:
+  file:
+    path: D:\Log
+  level:
+    root: info
+    com.xcm.smallmall: debug
+
+logstash:
+  host: 47.99.113.23
