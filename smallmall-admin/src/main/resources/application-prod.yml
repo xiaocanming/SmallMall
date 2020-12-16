@@ -31,4 +31,4 @@ logging:
     com.xcm.smallmall: info
 
 logstash:
-  host: logstash
+  host: fluentd

@@ -8,8 +8,8 @@ spring:
     active: dev #默认为开发环境
   servlet:
     multipart:
-      enabled: true #开启文件上传
-      max-file-size: 10MB #限制文件上传大小为10M
+      enabled: true #开启文件上传  MINIO
+      max-file-size: 10MB #限制文件上传大小为10M  MINIO
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
