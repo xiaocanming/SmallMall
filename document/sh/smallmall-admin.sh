@@ -20,7 +20,6 @@ echo '----build image----'
 docker run -p 8082:8082 --name ${app_name} \
 --link mysql:db \
 --link redis:redis \
---link efk-fluentd:fluentd \
 -e 'spring.profiles.active'=${profile_active} \
 -e TZ="Asia/Shanghai" \
 -v /etc/localtime:/etc/localtime \
