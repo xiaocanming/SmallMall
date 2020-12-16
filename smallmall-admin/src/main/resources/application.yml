@@ -6,6 +6,10 @@ spring:
     name: smallmall-admin
   profiles:
     active: dev #默认为开发环境
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 10MB #限制文件上传大小为10M
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
@@ -46,3 +50,8 @@ secure:
       - /admin/logout
       - /minio/upload
 
+minio:
+  endpoint: http://47.99.113.23:9090 #MinIO服务所在地址
+  bucketName: smallmall #存储桶名称
+  accessKey: minioadmin #访问的key
+  secretKey: minioadmin #访问的秘钥

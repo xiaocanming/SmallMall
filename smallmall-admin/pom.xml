@@ -35,6 +35,10 @@
             <groupId>com.xcm.smallmall</groupId>
             <artifactId>smallmall-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -63,7 +63,7 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
-        <destination>${LOG_STASH_HOST}:4560</destination>
+        <destination>${LOG_STASH_HOST}:24221</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <timestamp>
@@ -95,7 +95,7 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <destination>${LOG_STASH_HOST}:4561</destination>
+        <destination>${LOG_STASH_HOST}:24222</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <timestamp>
@@ -122,7 +122,7 @@
 
     <!--业务日志输出到LogStash-->
     <appender name="LOG_STASH_BUSINESS" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${LOG_STASH_HOST}:4562</destination>
+        <destination>${LOG_STASH_HOST}:24223</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <timestamp>
@@ -149,7 +149,7 @@
 
     <!--接口访问记录日志输出到LogStash-->
     <appender name="LOG_STASH_RECORD" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${LOG_STASH_HOST}:4563</destination>
+        <destination>${LOG_STASH_HOST}:24224</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <timestamp>
